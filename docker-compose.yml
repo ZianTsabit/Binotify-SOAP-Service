@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  # Database-nya
+  soap_db:
+    container_name: Binotify-SOAP-DB
+    build: db/db_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password_root
+      MYSQL_DATABASE: soap_db
+  soap_service:
+    container_name: Binotify-SOAP-Service
+    build: binotify-soap-service
+    environment:
+      API_KEY_PREMIUM: "lol"
+      API_KEY_NORMAL: "A"
+      DB_HOSTNAME: "soap_db"
+      DB_USERNAME: root
+      DB_PASSWORD: password_root
+      DB_DATABASE: soap_db
+    ports: 
+      - 8080:8080
+
